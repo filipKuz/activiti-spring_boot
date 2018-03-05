@@ -1,0 +1,3 @@
+create table efikasnost_izvrsilaca (ei_id bigint not null auto_increment, br_neuspenih_zadataka bigint not null, br_uspenih_zadataka bigint not null, izvrsilac varchar(255) not null, primary key (ei_id))
+create table nadleznost (nadleznost_id bigint not null auto_increment, nadredjeni varchar(255) not null, zaposleni varchar(255) not null, primary key (nadleznost_id))
+create table zahtev (zahtev_id bigint not null auto_increment, hitno bit not null, id_procesa bigint not null, izmena varchar(255), komentar varchar(255) not null, odobreno tinyint(1) default 0, overeno tinyint(1) default 0, rok_izvrsavanja varchar(255) not null, tip_zahteva integer not null, zaposleni_email varchar(255) not null, primary key (zahtev_id))

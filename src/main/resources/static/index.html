@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/global.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/taskovi.js"></script>
+<script type="text/javascript" src="js/welcome.js"></script>
+
+</head>
+<body>
+	<div class="navigation"></div>
+	<div class="container dynamicDiv">
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="container tasksContainer">
+		<h2 style="text-align: center">
+			<i>Moji taskovi</i>
+		</h2>
+		<br>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Ime taska</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="userTasksBody">
+
+			</tbody>
+		</table>
+		<br>
+		<div style="text-align: center;">
+			<button id="odobri" class="btn btn-success approveReq e" title="Odobri">
+				<span class="glyphicon glyphicon-ok"></span>
+			</button>
+			<button id="rejButton" class="btn btn-danger rejectReq e" title="Odbij" data-toggle="modal" style="display: inline;" data-target="#rejectModal"><span class="glyphicon glyphicon-remove"></span></button>
+			<button id="unclaimTask" class="btn btn-warning rejectReq e" title="Odustani" style="display: inline;">Odustani</button>
+			<button id="notValid" class="btn btn-warning reqNotValid e" title="Pogresan" style="display: inline;">Pogresan</button>
+			<button id="exec" class="btn btn-warning reqNotValid" title="Izvrsi" style="display: inline;">Izvrsi</button>
+		</div>
+		<br>
+		<hr>
+		<br>
+		<h2 style="text-align: center">
+			<i>Aktivni taskovi</i>
+		</h2>
+		<br>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Ime taska</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="allTasksBody">
+
+			</tbody>
+		</table>
+
+	</div>
+
+	<!--- Preview modal --->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Pregled zahteva</h4>
+				</div>
+				<div class="modal-body">
+					<br>
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="descriptionModal">Opis
+									zahteva</label>
+								<div class="col-md-4">
+									<textarea class="form-control" id="descriptionModal"
+										style="margin: 0px -47.7431px 0px 0px; width: 218px; height: 221px; resize: none;"
+										name="descriptionModal" readonly="readonly"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="reqTypeModal">Tip
+									zahteva</label>
+								<div class="col-md-5">
+									<input id="reqTypeModal" name="reqTypeModal" type="text"
+										class="form-control input-md" readonly="readonly">
+								</div>
+							</div>
+							<br>
+							<hr>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--- Preview modal --->
+
+	<!--- Reject modal --->
+	<div id="rejectModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Odbijanje zahteva</h4>
+				</div>
+				<div class="modal-body">
+					<br>
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="reqRejection">Obrazlozenje
+									o odbijanju</label>
+								<div class="col-md-4">
+									<textarea class="form-control" id="reqRejection"
+										style="margin: 0px -47.7431px 0px 0px; width: 218px; height: 221px; resize: none;"
+										name="reqRejection" required></textarea>
+								</div>
+							</div>
+							<br>
+							<hr>
+							<div class="form-group" style="text-align: center;">
+								<a class="btn btn-warning" id="rejectRequest"><span
+									class="glyphicon glyphicon-remove"></span> Reject</a>
+							</div>
+
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--- Reject modal --->
+
+	
+</body>
+</html>

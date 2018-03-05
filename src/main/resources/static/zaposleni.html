@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>New Request</title>
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/global.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/zaposleni.js"></script>
+<script type="text/javascript" src="js/welcome.js"></script>
+</head>
+<body>
+	<div class="navigation"></div>
+
+	<div class="container">
+		<ul class="nav nav-tabs">
+			<li class="active"><a id="nZah" class="hand">Novi zahtev</a></li>
+			<li><a id="iZah" class="hand">Istekli zahtevi</a></li>
+		</ul>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="container expiredReq">
+		<h2 style="text-align: center">
+			<i>Zahtevi sa isteklim rokom</i>
+		</h2>
+		<br>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Ime taska</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="userTasksBody">
+
+			</tbody>
+		</table>
+	</div>
+	<br>
+	<br>
+
+	<div class="container zahtev">
+		<form class="form-horizontal">
+			<fieldset>
+
+				<legend>Novi zahtev</legend>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="textinput">Opis
+						zahteva</label>
+					<div class="col-md-5">
+						<input id="reqDescription" name="textinput" type="text"
+							class="form-control input-md">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="rqDrop">Tip
+						zahteva</label>
+					<div class="col-md-5">
+						<select id="rqDrop" name="rqDrop" class="form-control">
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="radios">Hitno</label>
+					<div class="col-md-5">
+						<label class="radio-inline" for="radios-0"> <input
+							type="radio" name="radios" id="radios-0" value="false"
+							checked="checked"> Ne
+						</label> <label class="radio-inline" for="radios-1"> <input
+							type="radio" name="radios" id="radios-1" value="true"> Da
+						</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="buttondropdown">Ocekivani
+						rok</label>
+					<div class="col-md-5">
+						<div class="input-group">
+							<input id="buttondropdown" name="buttondropdown"
+								class="form-control" type="number" required>
+							<div class="input-group-btn">
+								<button id="time" type="button"
+									class="btn btn-default dropdown-toggle"
+									title="Podrazumevana vrednost je sat" data-toggle="dropdown">
+									Vreme u <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu pull-right">
+									<li><a id="min">Minutima</a></li>
+									<li><a id="h">Satima</a></li>
+									<li><a id="days">Danima</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</fieldset>
+			<div style="text-align: center;">
+				<button class="btn btn-primary" id="sendReq" type="button">Posalji</button>
+			</div>
+		</form>
+	</div>
+
+
+
+	<!--- Preview modal --->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Pregled zahteva</h4>
+				</div>
+				<div class="modal-body">
+					<br>
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="descriptionModal">Opis
+									zahteva</label>
+								<div class="col-md-4">
+									<textarea class="form-control" id="descriptionModal"
+										style="margin: 0px -47.7431px 0px 0px; width: 218px; height: 221px; resize: none;"
+										name="descriptionModal" readonly="readonly"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="reqTypeModal">Tip
+									zahteva</label>
+								<div class="col-md-5">
+									<input id="reqTypeModal" name="reqTypeModal" type="text"
+										class="form-control input-md" readonly="readonly">
+								</div>
+							</div>
+							<br>
+							<hr>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--- Preview modal --->
+
+	<!--- Produzi rok--->
+	<div id="timeReq" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Produzenje roka zahteva</h4>
+				</div>
+				<div class="modal-body">
+					<br>
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="buttondropdown">Novi
+									rok</label>
+								<div class="col-md-5">
+									<div class="input-group">
+										<input id="buttondropdown2" name="buttondropdown2"
+											class="form-control" type="number" required>
+										<div class="input-group-btn">
+											<button id="time" type="button"
+												class="btn btn-default dropdown-toggle"
+												title="Podrazumevana vrednost je sat" data-toggle="dropdown">
+												Vreme u <span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu pull-right">
+												<li><a id="min2">Minutima</a></li>
+												<li><a id="h2">Satima</a></li>
+												<li><a id="days2">Danima</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
+							<hr>
+							<div style="text-align: center;">
+								<button class="btn btn-primary" id="exReqMod" type="button">Posalji</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--- Produzi rok --->
+</body>
+</html>

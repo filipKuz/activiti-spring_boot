@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Tasks</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/global.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/welcome.js"></script>
+<script type="text/javascript" src="js/sektor.js"></script>
+</head>
+<body>
+
+	<div class="navigation"></div>
+	<div class="container">
+		<ul class="nav nav-tabs">
+			<li class="active"><a id="sekOdobrava" class="hand">Odobravanje
+					zahteva</a></li>
+			<li><a id="sekBira" class="hand">Hitni zahtevi</a></li>
+			<li><a id="odabirIzvrsilaca" class="hand">Odabir izvrsilaca</a></li>
+			<li><a id="sekOvera" class="hand">Overavanje zahteva</a></li>
+		</ul>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="container tasksContainer">
+		<h2 style="text-align: center">
+			<i>Moji taskovi</i>
+		</h2>
+		<br>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Ime taska</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="userTasksBody">
+
+			</tbody>
+		</table>
+		<br>
+		<div style="text-align: center;">
+			<button id="secOk" class="btn btn-primary secReq sec odobrava"
+				data-toggle="modal" style="display: inline;" data-target="#secModal">Odobri
+				zahtev</button>
+			<button id="secIzvr" class="btn btn-primary secReqIzvr sec"
+				data-toggle="modal" style="display: inline;"
+				data-target="#secModalIzvr">Dodeli izvrsioce</button>
+			<button id="unclaimTask" class="btn btn-info" title="Odustani"
+				style="display: inline;">Odustani</button>
+			<button id="notValid" class="btn btn-danger reqNotValid odobrava"
+				title="Pogresan" style="display: inline;">Pogresan</button>
+			<button id="hitnoSam" class="btn btn-warning hitno" title="Sam"
+				style="display: inline;">Izvrsi i overi zahtev</button>
+			<button id="proslediI" class="btn btn-danger hitno" title="Pogresan"
+				style="display: inline;">Prosledi izvrsiocima</button>
+			<button id="overi" class="btn btn-success overa" title="Overi"
+				style="display: inline;">Overi zahtev</button>
+			<button id="rej" class="btn btn-danger rejectReq odobrava" title="Odbij"
+				data-toggle="modal" style="display: inline;"
+				data-target="#rejectModal">
+				<span class="glyphicon glyphicon-remove"></span>
+			</button>
+		</div>
+		<br>
+		<hr>
+		<br>
+		<h2 style="text-align: center">
+			<i>Aktivni taskovi</i>
+		</h2>
+		<br>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Ime taska</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="allTasksBody">
+
+			</tbody>
+		</table>
+
+	</div>
+
+	<!--- Preview modal --->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Pregled zahteva</h4>
+				</div>
+				<div class="modal-body">
+					<br>
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="descriptionModal">Opis
+									zahteva</label>
+								<div class="col-md-4">
+									<textarea class="form-control" id="descriptionModal"
+										style="margin: 0px -47.7431px 0px 0px; width: 218px; height: 221px; resize: none;"
+										name="descriptionModal" readonly="readonly"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="reqTypeModal">Tip
+									zahteva</label>
+								<div class="col-md-5">
+									<input id="reqTypeModal" name="reqTypeModal" type="text"
+										class="form-control input-md" readonly="readonly">
+								</div>
+							</div>
+							<br>
+							<hr>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--- Preview modal --->
+
+	<!--- Reject modal --->
+	<div id="rejectModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Odbijanje zahteva</h4>
+				</div>
+				<div class="modal-body">
+					<br>
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="reqRejection">Obrazlozenje
+									o odbijanju</label>
+								<div class="col-md-4">
+									<textarea class="form-control" id="reqRejection"
+										style="margin: 0px -47.7431px 0px 0px; width: 218px; height: 221px; resize: none;"
+										name="reqRejection" required></textarea>
+								</div>
+							</div>
+							<br>
+							<hr>
+							<div class="form-group" style="text-align: center;">
+								<a class="btn btn-warning" id="rejectRequest"><span
+									class="glyphicon glyphicon-remove"></span> Reject</a>
+							</div>
+
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--- Reject modal --->
+
+	<!--- Direktor sektora modal --->
+	<div id="secModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Prihvatanje zahteva</h4>
+				</div>
+				<div class="modal-body">
+					<br>
+					<form class="form-horizontal">
+						<fieldset>
+
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="radios">Izmena
+									zahteva</label>
+								<div class="col-md-5">
+									<label class="radio-inline changeR" for="radios-0"> <input
+										type="radio" name="radios" id="radios-0" value="false"
+										checked="checked"> Ne
+									</label> <label class="radio-inline changeR" for="radios-1"> <input
+										type="radio" name="radios" id="radios-1" value="true">
+										Da
+									</label>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="reqDetails">Sadrzaj
+									zahteva izmene</label>
+								<div class="col-md-4">
+									<textarea class="form-control" id="reqDetails"
+										style="margin: 0px -47.7431px 0px 0px; width: 218px; height: 221px; resize: none;"
+										name="reqDetails" required disabled="true"></textarea>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="changeReq">Obrazlozenje
+									izmene</label>
+								<div class="col-md-4">
+									<textarea class="form-control" id="changeReq"
+										style="margin: 0px -47.7431px 0px 0px; width: 218px; height: 221px; resize: none;"
+										name="changeReq" required disabled="true"></textarea>
+								</div>
+							</div>
+							<br>
+							<hr>
+							<div class="form-group" style="text-align: center;">
+								<a class="btn btn-warning" id="secApprove"><span
+									class="glyphicon glyphicon-ok"></span> Odobri</a>
+							</div>
+
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--- Direktor sektora modal --->
+
+	<!--- Direktor sektora modal izvrsioci --->
+	<div id="secModalIzvr" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Odabir izvrsilaca</h4>
+				</div>
+				<div class="modal-body">
+					<br>
+					<form class="form-horizontal">
+						<fieldset>
+
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="selectmultiple">Slobodni
+									izvrsioci</label>
+								<div class="col-md-6">
+									<select id="selectmultiple" name="selectmultiple"
+										class="form-control" multiple="multiple">
+
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="buttondropdown">Ocekivani
+									rok</label>
+								<div class="col-md-5">
+									<div class="input-group">
+										<input id="buttondropdown" name="buttondropdown"
+											class="form-control" type="number" required>
+										<div class="input-group-btn">
+											<button id="time" type="button"
+												class="btn btn-default dropdown-toggle"
+												title="Podrazumevana vrednost je sat" data-toggle="dropdown">
+												Vreme u <span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu pull-right">
+												<li><a id="min">Minutima</a></li>
+												<li><a id="h">Satima</a></li>
+												<li><a id="days">Danima</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
+							<hr>
+							<div class="form-group" style="text-align: center;">
+								<a class="btn btn-warning" id="izvSel"><span
+									class="glyphicon glyphicon-ok"></span> Potvrdi</a>
+							</div>
+
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--- Direktor sektora modal izvrsioci--->
+
+</body>
+</html>
