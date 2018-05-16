@@ -19,7 +19,6 @@ import com.sf12.repositories.NadleznostJpaRepository;
 import com.sf12.repositories.ZahtevJpaRepository;
 
 @Component
-@Service
 public class ZahtevServis {
 
 	@Autowired
