@@ -11,7 +11,6 @@ import com.sf12.entity.EfikasnostIzvrsilaca;
 import com.sf12.repositories.EfikasnostIzvrsilacaJpaRepository;
 
 @Component
-@Service
 public class IzvrsilacService {
 
 	@Autowired
